@@ -1,0 +1,333 @@
+******** console log on a line before the response is set ********
+Context {
+  app: Application {
+  "#middleware": [
+    [Function: dispatch] {
+      router: Router {
+  "#params": {},
+  "#stack": [
+    Layer {
+  methods: [ "POST" ],
+  middleware: [ [AsyncFunction: fileUploadMiddleware], [AsyncFunction] ],
+  options: {
+    end: undefined,
+    sensitive: undefined,
+    strict: undefined,
+    ignoreCaptures: undefined
+  },
+  paramNames: [],
+  path: "/graphql",
+  regexp: /^\/graphql[\/#\?]?$/i
+},
+    Layer {
+  methods: [ "HEAD", "GET" ],
+  middleware: [ [AsyncFunction] ],
+  options: {
+    end: undefined,
+    sensitive: undefined,
+    strict: undefined,
+    ignoreCaptures: undefined
+  },
+  paramNames: [],
+  path: "/graphql",
+  regexp: /^\/graphql[\/#\?]?$/i
+}
+  ]
+}
+    },
+    [AsyncFunction: allowedMethods],
+    undefined
+  ],
+  keys: undefined,
+  proxy: false,
+  state: {}
+},
+  cookies: Cookies [],
+  isUpgradable: false,
+  respond: true,
+  request: Request {
+  hasBody: true,
+  headers: Headers {
+  accept: "*/*",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  connection: "keep-alive",
+  "content-length": "1468",
+  "content-type": "application/json",
+  host: "localhost:3000",
+  origin: "http://localhost:3000",
+  referer: "http://localhost:3000/graphql",
+  "sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="101", "Google Chrome";v="101"',
+  "sec-ch-ua-mobile": "?0",
+  "sec-ch-ua-platform": '"macOS"',
+  "sec-fetch-dest": "empty",
+  "sec-fetch-mode": "cors",
+  "sec-fetch-site": "same-origin",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0...."
+},
+  ip: "127.0.0.1",
+  ips: [],
+  method: "POST",
+  secure: false,
+  url: "http://localhost:3000/graphql"
+},
+  response: Response { body: undefined, headers: Headers {}, status: 404, type: undefined, writable: true },
+  socket: undefined,
+  state: {}
+}
+
+
+
+********** when querying a field that does not exist *************
+Context {
+  app: Application {
+  "#middleware": [
+    [Function: dispatch] {
+      router: Router {
+  "#params": {},
+  "#stack": [
+    Layer {
+  methods: [ "POST" ],
+  middleware: [ [AsyncFunction: fileUploadMiddleware], [AsyncFunction] ],
+  options: {
+    end: undefined,
+    sensitive: undefined,
+    strict: undefined,
+    ignoreCaptures: undefined
+  },
+  paramNames: [],
+  path: "/graphql",
+  regexp: /^\/graphql[\/#\?]?$/i
+},
+    Layer {
+  methods: [ "HEAD", "GET" ],
+  middleware: [ [AsyncFunction] ],
+  options: {
+    end: undefined,
+    sensitive: undefined,
+    strict: undefined,
+    ignoreCaptures: undefined
+  },
+  paramNames: [],
+  path: "/graphql",
+  regexp: /^\/graphql[\/#\?]?$/i
+}
+  ]
+}
+    },
+    [AsyncFunction: allowedMethods],
+    undefined
+  ],
+  keys: undefined,
+  proxy: false,
+  state: {}
+},
+  cookies: Cookies [],
+  isUpgradable: false,
+  respond: true,
+  request: Request {
+  hasBody: true,
+  headers: Headers {
+  accept: "*/*",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  connection: "keep-alive",
+  "content-length": "93",
+  "content-type": "application/json",
+  host: "localhost:3000",
+  origin: "http://localhost:3000",
+  referer: "http://localhost:3000/graphql",
+  "sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="101", "Google Chrome";v="101"',
+  "sec-ch-ua-mobile": "?0",
+  "sec-ch-ua-platform": '"macOS"',
+  "sec-fetch-dest": "empty",
+  "sec-fetch-mode": "cors",
+  "sec-fetch-site": "same-origin",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0...."
+},
+  ip: "127.0.0.1",
+  ips: [],
+  method: "POST",
+  secure: false,
+  url: "http://localhost:3000/graphql"
+},
+  response: Response {
+    body: {
+      errors: [
+        GraphQLError: Cannot query field "cat" on type "Media".
+      at Object.Field (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/common/specifiedRules-d222182c.js:179:31)
+      at Object.enter (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/language/visitor.js:185:29)
+      at Object.enter (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/utilities/TypeInfo.js:250:25)
+      at visit (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/language/visitor.js:126:26)
+      at validate2 (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/validation/validate.js:57:5)
+      at graphqlImpl (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql.js:126:26)
+      at https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql.js:82:74
+      at new Promise (<anonymous>)
+      at graphql (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql.js:81:10)
+      at file:///Users/loralynmilcarek/Desktop/graphErr/deno-graphQL-postgresQL/applyGQL.ts:84:33
+      ]
+    },
+  headers: Headers {},
+  status: 200,
+  type: undefined,
+  writable: true
+},
+  socket: undefined,
+  state: {}
+}
+
+
+****** querying two fields that don't exist (dog, cat) ******
+**** CONTEXT ***** Context {
+  app: Application {
+  "#middleware": [
+    [Function: dispatch] {
+      router: Router {
+  "#params": {},
+  "#stack": [
+    Layer {
+  methods: [ "POST" ],
+  middleware: [ [AsyncFunction: fileUploadMiddleware], [AsyncFunction] ],
+  options: {
+    end: undefined,
+    sensitive: undefined,
+    strict: undefined,
+    ignoreCaptures: undefined
+  },
+  paramNames: [],
+  path: "/graphql",
+  regexp: /^\/graphql[\/#\?]?$/i
+},
+    Layer {
+  methods: [ "HEAD", "GET" ],
+  middleware: [ [AsyncFunction] ],
+  options: {
+    end: undefined,
+    sensitive: undefined,
+    strict: undefined,
+    ignoreCaptures: undefined
+  },
+  paramNames: [],
+  path: "/graphql",
+  regexp: /^\/graphql[\/#\?]?$/i
+}
+  ]
+}
+    },
+    [AsyncFunction: allowedMethods],
+    undefined
+  ],
+  keys: undefined,
+  proxy: false,
+  state: {}
+},
+  cookies: Cookies [],
+  isUpgradable: false,
+  respond: true,
+  request: Request {
+  hasBody: true,
+  headers: Headers {
+  accept: "*/*",
+  "accept-encoding": "gzip, deflate, br",
+  "accept-language": "en-US,en;q=0.9",
+  connection: "keep-alive",
+  "content-length": "102",
+  "content-type": "application/json",
+  host: "localhost:3000",
+  origin: "http://localhost:3000",
+  referer: "http://localhost:3000/graphql",
+  "sec-ch-ua": '" Not A;Brand";v="99", "Chromium";v="101", "Google Chrome";v="101"',
+  "sec-ch-ua-mobile": "?0",
+  "sec-ch-ua-platform": '"macOS"',
+  "sec-fetch-dest": "empty",
+  "sec-fetch-mode": "cors",
+  "sec-fetch-site": "same-origin",
+  "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0...."
+},
+  ip: "127.0.0.1",
+  ips: [],
+  method: "POST",
+  secure: false,
+  url: "http://localhost:3000/graphql"
+},
+  response: Response {
+  body: {
+    errors: [
+      GraphQLError: Cannot query field "dog" on type "Media".
+    at Object.Field (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/common/specifiedRules-d222182c.js:179:31)
+    at Object.enter (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/language/visitor.js:185:29)
+    at Object.enter (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/utilities/TypeInfo.js:250:25)
+    at visit (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/language/visitor.js:126:26)
+    at validate2 (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/validation/validate.js:57:5)
+    at graphqlImpl (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql.js:126:26)
+    at https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql.js:82:74
+    at new Promise (<anonymous>)
+    at graphql (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql.js:81:10)
+    at file:///Users/loralynmilcarek/Desktop/graphErr/deno-graphQL-postgresQL/applyGQL.ts:80:33,
+      GraphQLError: Cannot query field "cat" on type "Media".
+    at Object.Field (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/common/specifiedRules-d222182c.js:179:31)
+    at Object.enter (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/language/visitor.js:185:29)
+    at Object.enter (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/utilities/TypeInfo.js:250:25)
+    at visit (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/language/visitor.js:126:26)
+    at validate2 (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql/validation/validate.js:57:5)
+    at graphqlImpl (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql.js:126:26)
+    at https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql.js:82:74
+    at new Promise (<anonymous>)
+    at graphql (https://cdn.skypack.dev/-/graphql@v15.6.1-zJ05ZndDOqLwqVRA9Igl/dist=es2019,mode=imports/optimized/graphql.js:81:10)
+    at file:///Users/loralynmilcarek/Desktop/graphErr/deno-graphQL-postgresQL/applyGQL.ts:80:33
+    ]
+  },
+  headers: Headers {},
+  status: 200,
+  type: undefined,
+  writable: true
+},
+  socket: undefined,
+  state: {}
+}
+
+
+
+graphErrLibrary = {
+  001: ["can't query dog", 500, "there's no dog field", "2.1 Language", "https://spec.graphql.org/draft/#sec-Language"],
+  002: ["can't query dog", 500, "there's no dog field", "2.1 Language", "https://spec.graphql.org/draft/#sec-Language"],
+}
+
+graphErrLibrary.forEach(el => {
+  if (el.standardError === response.error.message) {
+    res.statusCode = el.statusCode;
+    res.extensions = el.extensions;
+    { } = response.body.errors
+  }
+})
+
+// library
+graphErrLibrary = [
+  {
+    standardError: "can't query dog",
+    statusCode: 500,
+    extensionsMessage: "there's no field called that",
+    specSection: "2. Language",
+    url: "https://spec.graphql.org/draft/#sec-Language"
+  },
+  {
+    standardError: "can't query cat",
+    statusCode: 500,
+    extensionsMessage: "there's no field called that",
+    specSection: "2. Language",
+    url: "https://spec.graphql.org/draft/#sec-Language"
+  },
+    {
+    standardError: "didn't connect",
+    statusCode: 500,
+    extensionsMessage: "there's no field called that",
+    specSection: "2. Language",
+    url: "https://spec.graphql.org/draft/#sec-Language"
+  },
+]
+
+
+// middleware
+if (standardError === response.body.errors.message) {
+  status = [].statusCode
+}
