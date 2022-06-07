@@ -28,6 +28,7 @@ export const typeDefs = gql`
     rating: Int
   }
 `
+
 export type MediaType = {
   mediaType: string
 }

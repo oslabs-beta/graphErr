@@ -14,12 +14,7 @@ const GraphQLService = await applyGraphQL<Router>({
   extensions: '',
 })
 
-const graphErr = (next: any) => {
-  console.log('this is the graphErr function');
-  return next();
-}
-
 // Maybe later add middleware function below
-app.use(GraphQLService.routes(), GraphQLService.allowedMethods(), graphErr(() => console.log('done')));
+app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
 
 await app.listen({ port: 3000 });
