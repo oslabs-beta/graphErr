@@ -6,6 +6,7 @@ export const typeDefs = gql`
     allUsers: [User!]!
     allReviews: [Review!]!
     mediaByType(mediaType: String): [Media!]
+    userById(userId: Int): [User!]
   }
 
   type Media {
@@ -18,6 +19,7 @@ export const typeDefs = gql`
     _id: ID!
     username: String!
     password: String!
+    status: String
   }
 
   type Review {
@@ -31,6 +33,10 @@ export const typeDefs = gql`
 
 export type MediaType = {
   mediaType: string
+}
+
+export type UserId = {
+  userId: number
 }
 
 // export type pullMediaByType = {
