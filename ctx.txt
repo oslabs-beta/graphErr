@@ -331,3 +331,76 @@ graphErrLibrary = [
 if (standardError === response.body.errors.message) {
   status = [].statusCode
 }
+
+
+Resolvers {
+  Query: {
+    allMedia: [Function: allMedia],
+    allUsers: [Function: allUsers],
+    allReviews: [Function: allReviews],
+    mediaByType: [Function: mediaByType]
+  },
+  Upload: GraphQLScalarType {
+    name: "Upload",
+    description: "The `Upload` scalar type represents a file upload.",
+    specifiedByUrl: undefined,
+    serialize: [Function: serialize],
+    parseValue: [Function: parseValue],
+    parseLiteral: [Function: parseLiteral],
+    extensions: undefined,
+    astNode: undefined,
+    extensionASTNodes: undefined
+  }
+}
+
+
+
+//////////////// Avi \\\\\\\\\\\\\\\\\\\\\\\\\\\\
+console.log(typeDefs);
+
+{
+  kind: "Document",
+  definitions: [
+    {
+      kind: "ObjectTypeDefinition",
+      description: undefined,
+      name: { kind: "Name", value: "Query" },
+      interfaces: [],
+      directives: [],
+      fields: [ [Object], [Object], [Object], [Object] ]
+    },
+    {
+      kind: "ObjectTypeDefinition",
+      description: undefined,
+      name: { kind: "Name", value: "Media" },
+      interfaces: [],
+      directives: [],
+      fields: [ [Object], [Object], [Object] ]
+    },
+    {
+      kind: "ObjectTypeDefinition",
+      description: undefined,
+      name: { kind: "Name", value: "User" },
+      interfaces: [],
+      directives: [],
+      fields: [ [Object], [Object], [Object] ]
+    },
+    {
+      kind: "ObjectTypeDefinition",
+      description: undefined,
+      name: { kind: "Name", value: "Review" },
+      interfaces: [],
+      directives: [],
+      fields: [ [Object], [Object], [Object], [Object], [Object] ]
+    }
+  ],
+  loc: Location {
+    start: 0,
+    end: 389,
+    source: Source {
+      body: "\n  type Query {\n    allMedia: [Media!]!\n    allUsers: [User!]!\n    allReviews: [Review!]!\n    mediaB...",
+      name: "GraphQL request",
+      locationOffset: { line: 1, column: 1 }
+    }
+  }
+}
