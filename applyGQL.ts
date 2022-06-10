@@ -69,8 +69,8 @@ export async function applyGraphQL<T>({
   type Output = {
     standardError?: string,
     statusCode?: number,
-    graphErr?: string,
-    graphQLSpec?: string,
+    graphQLSpecification?: string,
+    specificationURL?: string,
   }
 
   type OutputArray = Output[]
@@ -95,13 +95,10 @@ export async function applyGraphQL<T>({
 
   await router.post(path, fileUploadMiddleware, async (ctx: any) => {
     const { response, request } = ctx;
-      // console.log("context98", ctx);
       if (request.hasBody) {
         try {
           const contextResult = context ? await context(ctx) : undefined;
           const body = ctx.params.operations || await request.body().value;
-          // console.log('body', await request.body().value)
-          // console.log("THIS", body.query);
           const result = await (graphql as any)(
             schema,
             body.query,
@@ -112,15 +109,12 @@ export async function applyGraphQL<T>({
           );
           
           response.body = result;
-          // console.log('RESPONSE', response.body);
           
           if (response.body.errors) {
             const graphErrObj: OutputArray = errorHandler(response.body);
             for (let i = 0; i < response.body.errors.length; i++) {
-              // We're not actually changing status behind the scenes
-              response.body.errors[i].statusCode = graphErrObj[i].statusCode;
-              response.body.errors[i].graphErr = graphErrObj[i].graphErr;
-              response.body.errors[i].graphQLSpec = graphErrObj[i].graphQLSpec;
+              response.body.errors[i].graphQLSpecification = graphErrObj[i].graphQLSpecification;
+              response.body.errors[i].specificationURL = graphErrObj[i].specificationURL;
             }
           } else {
             // loop through all other response arrays 
