@@ -404,3 +404,44 @@ console.log(typeDefs);
     }
   }
 }
+
+
+Response - one null / one valid
+RESPONSE {
+  data: {
+    mediaByType: [],
+    allUsers: [
+      { username: "sponge" },
+      { username: "pizza" },
+      { username: "cars" },
+      { username: "a" },
+      { username: "aa" },
+      { username: "aaa" },
+      { username: "antonio" },
+      { username: "loralyn" },
+      { username: "axl" },
+      { username: "xyz" },
+      { username: "namenamename" },
+      { username: "namename" },
+      { username: "namennnnname" },
+      { username: "nameeennnnname" },
+      { username: "captain" },
+      { username: "wumbo" },
+      { username: "antonionio" },
+      { username: "antonionioo" },
+      { username: "James" },
+      { username: "Spaghetti" },
+      { username: "Pasta" },
+      { username: "Boss" }
+    ]
+  }
+}
+
+Resolvers type
+
+{
+  allMedia: [Function: allMedia],
+  allUsers: [Function: allUsers],
+  allReviews: [Function: allReviews],
+  mediaByType: [Function: mediaByType]
+}
