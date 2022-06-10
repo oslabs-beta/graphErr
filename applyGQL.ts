@@ -112,9 +112,8 @@ export async function applyGraphQL<T>({
           );
           
           response.body = result;
-
-          // console.log(response.body);
-
+          // console.log('RESPONSE', response.body);
+          
           if (response.body.errors) {
             const graphErrObj: OutputArray = errorHandler(response.body);
             for (let i = 0; i < response.body.errors.length; i++) {
@@ -124,9 +123,12 @@ export async function applyGraphQL<T>({
               response.body.errors[i].graphQLSpec = graphErrObj[i].graphQLSpec;
             }
           } else {
-            const arrayTest: any = Object.entries(response.body.data)[0][1];
-            if (arrayTest.length === 0) {
-              response.body.data.graphErr = newErrors(body.query, resolvers.Query);
+            // loop through all other response arrays 
+             for (const queryName in response.body.data) {
+              // check for null responses
+              if (response.body.data[queryName].length === 0) {
+                response.body.data[queryName].push({graphErr: newErrors(body.query, resolvers.Query)});
+              }
             }
             response.status = 200;
           }

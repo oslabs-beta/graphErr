@@ -43,3 +43,7 @@ export type MediaOutput = {
   type: string,
   title: string
 }[]
+
+export type Resolvers = { 
+  [key: string]: string
+}
