@@ -126,6 +126,8 @@ export async function applyGraphQL<T>({
           } else {
             const arrayTest: any = Object.entries(response.body.data)[0][1];
             if (arrayTest.length === 0) {
+              // Avi - Delete this comment below!
+              // console.log('Array Test: ', arrayTest); // => [] its an empty array
               response.body.data.graphErr = newErrors(body.query, resolvers.Query);
             }
             response.status = 200;

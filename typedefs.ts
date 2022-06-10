@@ -6,6 +6,10 @@ export const typeDefs = gql`
     allUsers: [User!]!
     allReviews: [Review!]!
     mediaByType(mediaType: String): [Media!]
+    allAuthors: [Authors]
+  }
+  type Authors {
+    title: String
   }
 
   type Media {

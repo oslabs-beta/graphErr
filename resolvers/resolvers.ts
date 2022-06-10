@@ -9,6 +9,7 @@ export const resolvers = {
     allMedia: () => mediaController.pullAllMedia(),
     allUsers: () => userController.pullAllUsers(),
     allReviews: () => reviewController.pullAllReviews(),
+    allAuthors: () => mediaController.pullAllAuthors(),
     // below parameters are any type because they're required but not used
     mediaByType: (_root: any, args: MediaType, _context: any, _info: any) => {
       return mediaController.pullMediaByType(args.mediaType);
