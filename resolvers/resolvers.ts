@@ -1,11 +1,11 @@
 // deno-lint-ignore-file
-import { MediaType, UserId } from '../typedefs.ts'
+import { MediaType, UserId, AddUserMutation } from '../typedefs.ts';
 import userController from '../controllers/userControllers.ts';
 import mediaController from '../controllers/mediaControllers.ts';
 import reviewController from '../controllers/reviewControllers.ts';
 
-export const resolvers = { 
-  Query: { 
+export const resolvers = {
+  Query: {
     allMedia: () => mediaController.pullAllMedia(),
     allUsers: () => userController.pullAllUsers(),
     allReviews: () => reviewController.pullAllReviews(),
@@ -15,9 +15,11 @@ export const resolvers = {
     },
     userById: (_root: any, args: UserId, _context: any, _info: any) => {
       return userController.pullUserById(args.userId);
-    }
-  }, 
-  // Mutation: {
-  //   insertPosition: (_: any, args: any ) => console.log(args)
-  // }
-}
+    },
+  },
+  Mutation: {
+    addUser: (_root: any, args: AddUserMutation, _context: any, _info: any) => {
+      return userController.addUser(args.username, args.password);
+    },
+  },
+};
