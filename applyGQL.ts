@@ -78,11 +78,8 @@ export async function applyGraphQL<T>({
 
   const errorHandler = (resBody: any) : Output[] => {
     const output: OutputArray = [];
-    // console.log('res body', resBody.errors[0].message)
     for (let j = 0; j < resBody.errors.length; j++) {
-      // console.log(j);
       for (let i = 0; i < graphErrLibrary.length; i++) {
-        // console.log(i);
         console.log(graphErrLibrary[i].standardError, resBody.errors[j].message);
         if (resBody.errors[j].message.startsWith(graphErrLibrary[i].standardError)) {
           // possibly change later to return here instead to make more performant
@@ -90,7 +87,6 @@ export async function applyGraphQL<T>({
         }
       }
     }
-    // console.log(output);
     return output;
   }
 
@@ -128,7 +124,6 @@ export async function applyGraphQL<T>({
                 extensionsObj[queryName] = [{graphErr: newErrors(body.query, resolvers.Query)}]
               }
              }
-            console.log(extensionsObj);
             // Adds/defines extensions property after looping (only if any query returned and empty/null response) 
             if (Object.keys(extensionsObj).length !== 0) response.body.extensions = extensionsObj; 
             response.status = 200;
@@ -151,7 +146,6 @@ export async function applyGraphQL<T>({
   );
 
   await router.get(path, (ctx: any) => {
-    console.log(extensions);
     const { request, response } = ctx;
     if (usePlayground) {
       // perform more expensive content-type check only if necessary

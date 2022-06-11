@@ -1,5 +1,5 @@
 import database from '../models/database.ts';
-// import { MediaOutput } from '../typedefs.ts'
+import { MediaResultArray } from '../typedefs.ts'
 
 const mediaController: any = {};
 
@@ -7,13 +7,12 @@ mediaController.pullAllMedia = async() => {
   await database.connect();
   const tables = await database.queryArray('SELECT * FROM "public"."Media"');
   // iterate through each subarray in tables array and push each element of subarray to new object in array
-  const resultArr: any = [];
+  const resultArr: MediaResultArray = [];
   tables.rows.forEach((el) => {
     resultArr.push(
-      { _id: el[0], type: el[1], title: el[2] }
+      { _id: el[0] as number, type: el[1] as string, title: el[2] as string}
     );
   });
-  // console.log(resultArr);
   return resultArr;
 }
 
@@ -24,28 +23,14 @@ mediaController.pullAllMedia = async() => {
     sqlString,
     [mediaType]
   );
-  const resultArr: any = [];
+  const resultArr: MediaResultArray = [];
   tables.rows.forEach((el) => {
     resultArr.push(
-      { _id: el[0], type: el[1], title: el[2] }
+      { _id: el[0] as number , type: el[1] as string, title: el[2] as string}
     );
   });
   return resultArr;
 }
-
-mediaController.pullAllAuthors = async(mediaType: string) => {
-  await database.connect();
-  const sqlString = 'SELECT * FROM empty_table'
-  const tables = await database.queryArray(sqlString);
-  const resultArr: any = [];
-  tables.rows.forEach((el) => {
-    resultArr.push(
-      { title: el[0] }
-    );
-  });
-  return resultArr;
-}
-
 
 // Below is partially done (from last week)
 // mediaController.createMedia = async() => {

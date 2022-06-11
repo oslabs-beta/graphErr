@@ -63,13 +63,46 @@ export type MediaOutput = {
   title: string;
 }[];
 
-// used in newErrors function parameter 
+// used in newErrors function parameter in newErrors.ts
 export type Resolvers = {
   [key: string]: string;
 };
 
-// used in applyGQL
+// used in applyGQL.ts
 export type ExtensionsObject = {
   [key: string]: {graphErr: string}[];
 };
 
+// used in authorController.ts
+export type AuthorResultArray = {
+  title: string;
+}[];
+
+// used in mediaControllers.ts
+export type MediaResultArray = {
+  _id: number;
+  type: string;
+  title: string;
+}[];
+
+// used in mediaControllers.ts
+export type ReviewResultArray = {
+  _id: number;
+  user_id: number;
+  media_id: number;
+  review: string;
+  rating: number;
+}[];
+
+// used in mediaControllers.ts
+export type UserResultArray = {
+  _id: number;
+  username: string;
+  password: string;
+  status: string;
+}[];
+
+// used in authorController.ts
+// export type AuthorController = {
+//   [key: string]: function;
+// }
