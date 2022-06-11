@@ -123,7 +123,8 @@ export async function applyGraphQL<T>({
               if (response.body.data[queryName].length === 0) {
                 response.body.data[queryName].push({graphErr: newErrors(body.query, resolvers.Query)});
               }
-            }
+
+             }
             response.status = 200;
           }
           return;

@@ -33,6 +33,20 @@ mediaController.pullAllMedia = async() => {
   return resultArr;
 }
 
+mediaController.pullAllAuthors = async(mediaType: string) => {
+  await database.connect();
+  const sqlString = 'SELECT * FROM empty_table'
+  const tables = await database.queryArray(sqlString);
+  const resultArr: any = [];
+  tables.rows.forEach((el) => {
+    resultArr.push(
+      { title: el[0] }
+    );
+  });
+  return resultArr;
+}
+
+
 // Below is partially done (from last week)
 // mediaController.createMedia = async() => {
 //   await database.connect();
