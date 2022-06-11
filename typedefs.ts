@@ -10,12 +10,11 @@ export const typeDefs = gql`
     allUsers: [User!]!
     allReviews: [Review!]!
     mediaByType(mediaType: String): [Media!]
+    userById(userId: Int): [User!]
     allAuthors: [Authors]
   }
   type Authors {
     title: String
-
-    userById(userId: Int): [User!]
   }
 
   type Media {

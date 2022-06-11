@@ -117,14 +117,18 @@ export async function applyGraphQL<T>({
               response.body.errors[i].specificationURL = graphErrObj[i].specificationURL;
             }
           } else {
+            // Object to store extensions
+            const extensionsObj : any = {};
             // loop through all other response arrays 
              for (const queryName in response.body.data) {
-              // check for null responses
+              // check for null responses. A null response indicates that we need to modify the response message
               if (response.body.data[queryName].length === 0) {
-                response.body.data[queryName].push({graphErr: newErrors(body.query, resolvers.Query)});
+                // Creates new property on extensionsObj, setting the graphErr response as the evaluated result of invoking newErrors
+                extensionsObj[queryName] = [{graphErr: newErrors(body.query, resolvers.Query)}]
               }
-
              }
+            // Defines extensions property after looping
+            response.body.extensions = extensionsObj; 
             response.status = 200;
           }
           return;

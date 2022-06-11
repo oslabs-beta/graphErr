@@ -15,7 +15,7 @@ export const newErrors = (gqlQuery : string, resolvers: Resolvers) : string => {
   if (typeDefs.loc) {
     const typeDef : string  = typeDefs.loc.source.body;
     const queryCharStart : number = typeDef.indexOf(queryName);
-    // const acceptsArg : boolean = typeDef[queryName.length + queryCharStart] === '(';
+    const acceptsArg : boolean = typeDef[queryName.length + queryCharStart] === '(';
     // if query accepts arg, check if argument was provided
     const argCharEnd : number = typeDef.indexOf(':', queryCharStart);
     const queryNamePlusArg : string = typeDef.slice(queryCharStart, argCharEnd + 1);
