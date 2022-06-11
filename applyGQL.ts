@@ -6,7 +6,7 @@ import { makeExecutableSchema } from "https://deno.land/x/oak_graphql@0.6.3/grap
 import { fileUploadMiddleware, GraphQLUpload } from "https://deno.land/x/oak_graphql@0.6.3/fileUpload.ts";
 import { graphErrLibrary } from "./errorLibrary.ts";
 import { newErrors } from "./errorHandling/newErrors.ts"
-import { ExtensionsObject } from "./typedefs.ts"
+import { ExtensionsObject, ErrorResponseBody } from "./typedefs.ts"
 
 interface Constructable<T> {
   new(...args: any): T & OakRouter;
@@ -76,11 +76,10 @@ export async function applyGraphQL<T>({
 
   type OutputArray = Output[]
 
-  const errorHandler = (resBody: any) : Output[] => {
+  const errorHandler = (resBody: ErrorResponseBody) : Output[] => {
     const output: OutputArray = [];
     for (let j = 0; j < resBody.errors.length; j++) {
       for (let i = 0; i < graphErrLibrary.length; i++) {
-        console.log(graphErrLibrary[i].standardError, resBody.errors[j].message);
         if (resBody.errors[j].message.startsWith(graphErrLibrary[i].standardError)) {
           // possibly change later to return here instead to make more performant
           output.push(graphErrLibrary[i]);
@@ -108,6 +107,7 @@ export async function applyGraphQL<T>({
           response.body = result;
           
           if (response.body.errors) {
+            console.log('RB', response.body);
             const graphErrObj: OutputArray = errorHandler(response.body);
             for (let i = 0; i < response.body.errors.length; i++) {
               response.body.errors[i].graphQLSpecification = graphErrObj[i].graphQLSpecification;

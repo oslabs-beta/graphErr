@@ -102,6 +102,14 @@ export type UserResultArray = {
   status: string;
 }[];
 
+// used in applyGQL.ts
+export type ErrorResponseBody = {
+  errors: {
+    graphQLError: string;
+    message: string;
+  }[];  
+};
+
 // used in authorController.ts
 // export type AuthorController = {
 //   [key: string]: function;
