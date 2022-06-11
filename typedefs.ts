@@ -13,6 +13,7 @@ export const typeDefs = gql`
     userById(userId: Int): [User!]
     allAuthors: [Authors]
   }
+  
   type Authors {
     title: String
   }
@@ -109,6 +110,10 @@ export type ErrorResponseBody = {
     message: string;
   }[];  
 };
+
+export type QueryCache = {
+  [key: string]: string;
+}
 
 // used in authorController.ts
 // export type AuthorController = {

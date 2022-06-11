@@ -26,7 +26,7 @@ export interface ApplyGraphQLOptions<T> {
   usePlayground?: boolean;
   settings?: ISettings;
 }
-
+ 
 export interface ResolversProps {
   Query?: any;
   Mutation?: any;
@@ -105,7 +105,6 @@ export async function applyGraphQL<T>({
           response.body = result;
           
           if (response.body.errors) {
-            console.log('RB', response.body);
             const graphErrObj: OutputArray = errorHandler(response.body);
             for (let i = 0; i < response.body.errors.length; i++) {
               response.body.errors[i].graphQLSpecification = graphErrObj[i].graphQLSpecification;

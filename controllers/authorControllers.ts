@@ -3,12 +3,14 @@ import { AuthorResultArray } from '../typedefs.ts';
 
 const authorController: any = {};
 
-authorController.pullAllAuthors = async(mediaType: string) => {
+// Query to pull all author information
+authorController.pullAllAuthors = async() => {
   await database.connect();
   const sqlString = 'SELECT * FROM empty_table'
   const tables = await database.queryArray(sqlString);
-  // const tableRows: string[][] = tables.rows as string[][];
   const resultArr: AuthorResultArray = [];
+  // Loop through tables.rows to create array of objects called resultArr
+  // resultArr's element's properties match the Authors object type in typedef.ts 
   tables.rows.forEach((el) => {
     resultArr.push(
       { title: el[0] as string}

@@ -3,11 +3,13 @@ import { MediaResultArray } from '../typedefs.ts'
 
 const mediaController: any = {};
 
+// Query to pull all media
 mediaController.pullAllMedia = async() => {
   await database.connect();
   const tables = await database.queryArray('SELECT * FROM "public"."Media"');
-  // iterate through each subarray in tables array and push each element of subarray to new object in array
   const resultArr: MediaResultArray = [];
+  // Loop through tables.rows to create array of objects called resultArr
+  // resultArr's elements' properties match the Media object type in typedef.ts 
   tables.rows.forEach((el) => {
     resultArr.push(
       { _id: el[0] as number, type: el[1] as string, title: el[2] as string}
@@ -16,14 +18,20 @@ mediaController.pullAllMedia = async() => {
   return resultArr;
 }
 
- mediaController.pullMediaByType = async(mediaType: string) => {
+// Query to pull media by type (e.g., book, movie, music)
+mediaController.pullMediaByType = async(mediaType: string) => {
   await database.connect();
+  // The below SQL query filters based on type.
+  // type comes from the argument mediaType that is passed into this middleware function
+  // the mediaType argument is supllied by the client's GQL query
   const sqlString = `SELECT * FROM "public"."Media" WHERE type = $1;`
   const tables = await database.queryArray(
     sqlString,
     [mediaType]
   );
   const resultArr: MediaResultArray = [];
+  // Loop through tables.rows to create array of objects called resultArr
+  // resultArr's elements' properties match the Media object type in typedef.ts 
   tables.rows.forEach((el) => {
     resultArr.push(
       { _id: el[0] as number , type: el[1] as string, title: el[2] as string}
@@ -31,16 +39,5 @@ mediaController.pullAllMedia = async() => {
   });
   return resultArr;
 }
-
-// Below is partially done (from last week)
-// mediaController.createMedia = async() => {
-//   await database.connect();
-//   const sqlString = `INSERT INTO "public"."Media" (type, title) VALUES ($1, $2);`;
-//   const newMediaInputs = ['movie', 'Snakes on a Plane 10'];
-//   const tables = await database.queryArray(
-//     sqlString,
-//     newMediaInputs
-//   );
-// }
 
 export default mediaController;
