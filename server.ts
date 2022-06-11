@@ -10,8 +10,6 @@ const GraphQLService = await applyGraphQL<Router>({
   Router,
   typeDefs: typeDefs,
   resolvers: resolvers,
-  // Extensions is not being used currently. We may want to use it if we change how we manipulate the error message
-  extensions: '',
 })
 
 // Maybe later add middleware function below

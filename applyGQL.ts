@@ -25,7 +25,6 @@ export interface ApplyGraphQLOptions<T> {
   context?: (ctx: any) => any;
   usePlayground?: boolean;
   settings?: ISettings;
-  extensions: string;
 }
 
 export interface ResolversProps {
@@ -42,7 +41,6 @@ export async function applyGraphQL<T>({
   context,
   usePlayground = true,
   settings,
-  extensions,
 }: ApplyGraphQLOptions<T>): Promise<T> {
   const router = new Router();
 
