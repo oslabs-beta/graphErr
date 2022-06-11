@@ -69,8 +69,8 @@ export async function applyGraphQL<T>({
   type Output = {
     standardError?: string,
     statusCode?: number,
-    graphErr?: string,
-    graphQLSpec?: string,
+    graphQLSpecification?: string,
+    specificationURL?: string,
   }
 
   type OutputArray = Output[]
@@ -95,13 +95,10 @@ export async function applyGraphQL<T>({
 
   await router.post(path, fileUploadMiddleware, async (ctx: any) => {
     const { response, request } = ctx;
-      // console.log("context98", ctx);
       if (request.hasBody) {
         try {
           const contextResult = context ? await context(ctx) : undefined;
           const body = ctx.params.operations || await request.body().value;
-          // console.log('body', await request.body().value)
-          // console.log("THIS", body.query);
           const result = await (graphql as any)(
             schema,
             body.query,
@@ -112,24 +109,22 @@ export async function applyGraphQL<T>({
           );
           
           response.body = result;
-
-          // console.log(response.body);
-
+          
           if (response.body.errors) {
             const graphErrObj: OutputArray = errorHandler(response.body);
             for (let i = 0; i < response.body.errors.length; i++) {
-              // We're not actually changing status behind the scenes
-              response.body.errors[i].statusCode = graphErrObj[i].statusCode;
-              response.body.errors[i].graphErr = graphErrObj[i].graphErr;
-              response.body.errors[i].graphQLSpec = graphErrObj[i].graphQLSpec;
+              response.body.errors[i].graphQLSpecification = graphErrObj[i].graphQLSpecification;
+              response.body.errors[i].specificationURL = graphErrObj[i].specificationURL;
             }
           } else {
-            const arrayTest: any = Object.entries(response.body.data)[0][1];
-            if (arrayTest.length === 0) {
-              // Avi - Delete this comment below!
-              // console.log('Array Test: ', arrayTest); // => [] its an empty array
-              response.body.data.graphErr = newErrors(body.query, resolvers.Query);
-            }
+            // loop through all other response arrays 
+             for (const queryName in response.body.data) {
+              // check for null responses
+              if (response.body.data[queryName].length === 0) {
+                response.body.data[queryName].push({graphErr: newErrors(body.query, resolvers.Query)});
+              }
+
+             }
             response.status = 200;
           }
           return;
