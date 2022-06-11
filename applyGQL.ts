@@ -6,6 +6,7 @@ import { makeExecutableSchema } from "https://deno.land/x/oak_graphql@0.6.3/grap
 import { fileUploadMiddleware, GraphQLUpload } from "https://deno.land/x/oak_graphql@0.6.3/fileUpload.ts";
 import { graphErrLibrary } from "./errorLibrary.ts";
 import { newErrors } from "./errorHandling/newErrors.ts"
+import { ExtensionsObject } from "./typedefs.ts"
 
 interface Constructable<T> {
   new(...args: any): T & OakRouter;
@@ -118,7 +119,7 @@ export async function applyGraphQL<T>({
             }
           } else {
             // Object to store extensions
-            const extensionsObj : any = {};
+            const extensionsObj : ExtensionsObject = {};
             // loop through all other response arrays 
              for (const queryName in response.body.data) {
               // check for null responses. A null response indicates that we need to modify the response message
@@ -127,8 +128,9 @@ export async function applyGraphQL<T>({
                 extensionsObj[queryName] = [{graphErr: newErrors(body.query, resolvers.Query)}]
               }
              }
-            // Defines extensions property after looping
-            response.body.extensions = extensionsObj; 
+            console.log(extensionsObj);
+            // Adds/defines extensions property after looping (only if any query returned and empty/null response) 
+            if (Object.keys(extensionsObj).length !== 0) response.body.extensions = extensionsObj; 
             response.status = 200;
           }
           return;

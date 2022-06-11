@@ -63,6 +63,13 @@ export type MediaOutput = {
   title: string;
 }[];
 
+// used in newErrors function parameter 
 export type Resolvers = {
   [key: string]: string;
 };
+
+// used in applyGQL
+export type ExtensionsObject = {
+  [key: string]: {graphErr: string}[];
+};
+
