@@ -6,7 +6,7 @@ import { makeExecutableSchema } from "https://deno.land/x/oak_graphql@0.6.3/grap
 import { fileUploadMiddleware, GraphQLUpload } from "https://deno.land/x/oak_graphql@0.6.3/fileUpload.ts";
 import { graphErrLibrary } from "./errorLibrary.ts";
 import { newErrors } from "./errorHandling/newErrors.ts"
-import { ExtensionsObject } from "./typedefs.ts"
+import { ExtensionsObject, ErrorResponseBody } from "./typedefs.ts"
 
 interface Constructable<T> {
   new(...args: any): T & OakRouter;
@@ -25,9 +25,8 @@ export interface ApplyGraphQLOptions<T> {
   context?: (ctx: any) => any;
   usePlayground?: boolean;
   settings?: ISettings;
-  extensions: string;
 }
-
+ 
 export interface ResolversProps {
   Query?: any;
   Mutation?: any;
@@ -42,7 +41,6 @@ export async function applyGraphQL<T>({
   context,
   usePlayground = true,
   settings,
-  extensions,
 }: ApplyGraphQLOptions<T>): Promise<T> {
   const router = new Router();
 
@@ -76,21 +74,16 @@ export async function applyGraphQL<T>({
 
   type OutputArray = Output[]
 
-  const errorHandler = (resBody: any) : Output[] => {
+  const errorHandler = (resBody: ErrorResponseBody) : Output[] => {
     const output: OutputArray = [];
-    // console.log('res body', resBody.errors[0].message)
     for (let j = 0; j < resBody.errors.length; j++) {
-      // console.log(j);
       for (let i = 0; i < graphErrLibrary.length; i++) {
-        // console.log(i);
-        console.log(graphErrLibrary[i].standardError, resBody.errors[j].message);
         if (resBody.errors[j].message.startsWith(graphErrLibrary[i].standardError)) {
           // possibly change later to return here instead to make more performant
           output.push(graphErrLibrary[i]);
         }
       }
     }
-    // console.log(output);
     return output;
   }
 
@@ -128,7 +121,6 @@ export async function applyGraphQL<T>({
                 extensionsObj[queryName] = [{graphErr: newErrors(body.query, resolvers.Query)}]
               }
              }
-            console.log(extensionsObj);
             // Adds/defines extensions property after looping (only if any query returned and empty/null response) 
             if (Object.keys(extensionsObj).length !== 0) response.body.extensions = extensionsObj; 
             response.status = 200;
@@ -151,7 +143,6 @@ export async function applyGraphQL<T>({
   );
 
   await router.get(path, (ctx: any) => {
-    console.log(extensions);
     const { request, response } = ctx;
     if (usePlayground) {
       // perform more expensive content-type check only if necessary
