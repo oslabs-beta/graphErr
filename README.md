@@ -38,3 +38,29 @@ query {
   }
 }
 ```
+
+### Suggestions
+
+We would love to hear from you!
+
+GraphErr is currently in beta. If you would like to contribute please contact the authors.
+
+Notice any issues or bugs? Please open an issue!
+
+## Authors
+
+[Thomas Seo](https://github.com/thomasseo1)
+
+[Maxwell Cook](https://github.com/maxwellcook)
+
+[Clay Sawyer](https://github.com/claysawyer)
+
+[Loralyn Milcarek](https://github.com/loralyn-milcarek)
+
+[Avi Kerson](https://github.com/avitacos)
+
+## Documentation
+
+[graphErr.land](google.com)
+
+[Our medium article](google.com)
