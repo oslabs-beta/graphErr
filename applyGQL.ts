@@ -6,7 +6,7 @@ import { makeExecutableSchema } from "https://deno.land/x/oak_graphql@0.6.3/grap
 import { fileUploadMiddleware, GraphQLUpload } from "https://deno.land/x/oak_graphql@0.6.3/fileUpload.ts";
 import { graphErrLibrary } from "./errorLibrary.ts";
 import { newErrors } from "./errorHandling/newErrors.ts"
-import { ExtensionsObject, ErrorResponseBody } from "./typedefs.ts"
+import { ExtensionsObject, ErrorResponseBody, QueryCache, NewErrorsOutputObj } from "./typedefs.ts"
 
 interface Constructable<T> {
   new(...args: any): T & OakRouter;
@@ -112,16 +112,22 @@ export async function applyGraphQL<T>({
             }
           } else {
             // Object to store extensions
-            const extensionsObj : ExtensionsObject = {};
-            // loop through all other response arrays 
+            const extensionsObj: ExtensionsObject = {};
+            // Object to store cache of queries
+            let queryCacheObj: QueryCache = {};
+            // loop through all response arrays 
              for (const queryName in response.body.data) {
               // check for null responses. A null response indicates that we need to modify the response message
               if (response.body.data[queryName].length === 0) {
-                // Creates new property on extensionsObj, setting the graphErr response as the evaluated result of invoking newErrors
-                extensionsObj[queryName] = [{graphErr: newErrors(body.query, resolvers.Query)}]
+                // Invoke newErrors and store the graphErr response message and queryCache on the newErrorsResult object
+                const newErrorsResult: NewErrorsOutputObj = newErrors(body.query, resolvers.Query, queryName, queryCacheObj);
+                // Creates new property on extensionsObj, setting the graphErr response message as the evaluated result of invoking newErrors
+                extensionsObj[queryName] = [{graphErr: newErrorsResult.graphErrResponse}];
+                // Assings queryCacheObj the updated cacheObj value, which has been processed and returned by the newErrors function
+                queryCacheObj = newErrorsResult.queryCache;
               }
              }
-            // Adds/defines extensions property after looping (only if any query returned and empty/null response) 
+            // Adds/defines extensions property after looping (only if any queries returned an empty/null response) 
             if (Object.keys(extensionsObj).length !== 0) response.body.extensions = extensionsObj; 
             response.status = 200;
           }
