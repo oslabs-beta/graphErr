@@ -111,8 +111,15 @@ export type ErrorResponseBody = {
   }[];  
 };
 
+// used in newErrors.ts
 export type QueryCache = {
-  [key: string]: string;
+  [key: string]: number;
+}
+
+// used in newErrors.ts
+export type NewErrorsOutputObj = {
+  graphErrResponse: string,
+  queryCache: QueryCache,
 }
 
 // used in authorController.ts
