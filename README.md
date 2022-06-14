@@ -1,4 +1,6 @@
-![Needs to be changed. Should be a picture of our GraphErr logo]('./assets/graphErrLogo.svg')
+<div align="center">
+  <img style="width: 70%" src="assets/graphErrLogo.svg" alt="graphErr logo">
+</div>
 
 # GraphErr
 
@@ -46,11 +48,17 @@ query {
 ```
 
 The response would look like:
-![Example query result]('./assets/Screen Shot 2022-06-14 at 11.30.58 AM.png')
+<div align="left">
+  <img style="width: 100%" src="assets/Screen Shot 2022-06-14 at 11.30.58 AM.png" alt="example query for getting all users with username">
+</div>
+
 
 ## Making a Query that would display GraphErr functionality
 
-![Example query with GraphErr response]('./assets/graphErr msg example.png')
+<div align="left">
+  <img style="width: 100%" src="assets/graphErr msg example.png" alt="example query with graphErr response">
+</div>
+
 
 ### Suggestions
 
