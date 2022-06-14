@@ -94,8 +94,9 @@ export async function applyGraphQL<T>({
           // If null responses exist, then we add graphErr error messaging to specify what the issue is
           } else {
             // Define extensions object by invoking newErrorsHandler function. Need to pass in entire response body data, 
-            // body.query (the entire gql request in string form), and resolvers.Query (a list of all possible queries - from the schema)
-            const extensionsObj: ExtensionsObject = newErrorsHandler(response.body.data, body.query, resolvers.Query);
+            // body.query (the entire gql request in string form), resolvers.Query (a list of all possible queries - from the schema), and
+            // typeDefs.loc.source.body (essentially the entire schema)
+            const extensionsObj: ExtensionsObject = newErrorsHandler(response.body.data, body.query, resolvers.Query, typeDefs.loc.source.body);
             // Only adds an extensions property to the response if newErrorsHandler found any null responses
             if (Object.keys(extensionsObj).length > 0) response.body.extensions = extensionsObj;
             response.status = 200;
