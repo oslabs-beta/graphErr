@@ -1,12 +1,11 @@
 // deno-lint-ignore-file no-explicit-any
-// maybe go through the file and clean up TypeScript any types
 import { gql, graphql } from "https://deno.land/x/oak_graphql@0.6.3/deps.ts";
 import { ISettings, renderPlaygroundPage} from "https://deno.land/x/oak_graphql@0.6.3/graphql-playground-html/render-playground-html.ts";
 import { makeExecutableSchema } from "https://deno.land/x/oak_graphql@0.6.3/graphql-tools/schema/makeExecutableSchema.ts";
 import { fileUploadMiddleware, GraphQLUpload } from "https://deno.land/x/oak_graphql@0.6.3/fileUpload.ts";
-import { graphErrLibrary } from "./errorLibrary.ts";
-import { newErrors } from "./errorHandling/newErrors.ts"
-import { ExtensionsObject, ErrorResponseBody, QueryCache, NewErrorsOutputObj } from "./typedefs.ts"
+import { OutputArray, ExtensionsObject } from "./typedefs.ts";
+import { errorHandler } from "./errorHandling/nativeErrors.ts";
+import { newErrorsHandler } from "./errorHandling/newErrorsHandler.ts";
 
 interface Constructable<T> {
   new(...args: any): T & OakRouter;
@@ -65,80 +64,6 @@ export async function applyGraphQL<T>({
     resolvers: [resolvers],
   });
 
-  type Output = {
-    startsWith?: string,
-    coontains?: string,
-    endsWith?: string,
-    //standardError?: string,
-    statusCode?: number,
-    graphQLSpecification?: string,
-    specificationURL?: string,
-  }
-
-  type OutputArray = Output[]
-
-  const errorHandler = (resBody: ErrorResponseBody) : Output[] => {
-    const output: OutputArray = [];
-
-    resBody.errors.forEach((error: any) => {
-      console.log(error.message);
-      for (let i = 0; i < graphErrLibrary.length; i ++) {
-        const start : string | undefined = graphErrLibrary[i].startsWith;
-        const contain : string | undefined = graphErrLibrary[i].contains;
-        const end : string | undefined = graphErrLibrary[i].endsWith;
-        const matchingString : string = error.message;
-
-        if (start && contain && end) {
-          if (matchingString.startsWith(start) && matchingString.includes(contain) && matchingString.endsWith(end)) {
-            output.push(graphErrLibrary[i]);
-          }
-        } else if (start && contain) {
-          if (matchingString.startsWith(start) && matchingString.includes(contain)) {
-            output.push(graphErrLibrary[i]);
-          }
-        } else if (contain && end) {
-          if (matchingString.includes(contain) && matchingString.endsWith(end)) {
-            output.push(graphErrLibrary[i]);
-          }
-        } else if (start && end) {
-            if (matchingString.startsWith(start) && matchingString.endsWith(end)) {
-              output.push(graphErrLibrary[i]);
-            }
-        } else if (start) {
-         if (matchingString.startsWith(start)) {
-          output.push(graphErrLibrary[i]);
-         }
-        } else if (contain) {
-          if (matchingString.includes(contain)) {
-            output.push(graphErrLibrary[i]);
-          }
-        } else if (end) {
-          if (matchingString.endsWith(end)) {
-            output.push(graphErrLibrary[i]);
-          }
-        }
-      }
-      if (!output[0]) output.push({graphQLSpecification: 'Error not found in specification', specificationURL: "https://spec.graphql.org/"});
-    });
-    return output;
-  }
-
-  // const errorHandler = (resBody: ErrorResponseBody) : Output[] => {
-  //   const output: OutputArray = [];
-  //   for (let j = 0; j < resBody.errors.length; j++) {
-  //     for (let i = 0; i < graphErrLibrary.length; i++) {
-  //       if (resBody.errors[j].message.startsWith(graphErrLibrary[i].standardError)) {
-  //         // possibly change later to return here instead to make more performant
-  //         output.push(graphErrLibrary[i]);
-  //       }
-  //     }
-  //   }
-  //   return output;
-  // }
-
-
-
-
   await router.post(path, fileUploadMiddleware, async (ctx: any) => {
     const { response, request } = ctx;
       if (request.hasBody) {
@@ -156,31 +81,23 @@ export async function applyGraphQL<T>({
           
           response.body = result;
           
+          // Check if the response body contains any errors. If so, invoke the errorHandler function change the response
+          // and add graphErr details
           if (response.body.errors) {
             const graphErrObj: OutputArray = errorHandler(response.body);
+            // Loop through each error message
             for (let i = 0; i < response.body.errors.length; i++) {
               response.body.errors[i].graphQLSpecification = graphErrObj[i].graphQLSpecification;
               response.body.errors[i].specificationURL = graphErrObj[i].specificationURL;
             }
+          // If the response body does not contain errors, then we execute logic to determine if there are any null responses
+          // If null responses exist, then we add graphErr error messaging to specify what the issue is
           } else {
-            // Object to store extensions
-            const extensionsObj: ExtensionsObject = {};
-            // Object to store cache of queries
-            let queryCacheObj: QueryCache = {};
-            // loop through all response arrays 
-             for (const queryName in response.body.data) {
-              // check for null responses. A null response indicates that we need to modify the response message
-              if (response.body.data[queryName].length === 0) {
-                // Invoke newErrors and store the graphErr response message and queryCache on the newErrorsResult object
-                const newErrorsResult: NewErrorsOutputObj = newErrors(body.query, resolvers.Query, queryName, queryCacheObj);
-                // Creates new property on extensionsObj, setting the graphErr response message as the evaluated result of invoking newErrors
-                extensionsObj[queryName] = [{graphErr: newErrorsResult.graphErrResponse}];
-                // Assings queryCacheObj the updated cacheObj value, which has been processed and returned by the newErrors function
-                queryCacheObj = newErrorsResult.queryCache;
-              }
-             }
-            // Adds/defines extensions property after looping (only if any queries returned an empty/null response) 
-            if (Object.keys(extensionsObj).length !== 0) response.body.extensions = extensionsObj; 
+            // Define extensions object by invoking newErrorsHandler function. Need to pass in entire response body data, 
+            // body.query (the entire gql request in string form), and resolvers.Query (a list of all possible queries - from the schema)
+            const extensionsObj: ExtensionsObject = newErrorsHandler(response.body.data, body.query, resolvers.Query);
+            // Only adds an extensions property to the response if newErrorsHandler found any null responses
+            if (Object.keys(extensionsObj).length > 0) response.body.extensions = extensionsObj;
             response.status = 200;
           }
           return;

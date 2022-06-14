@@ -61,7 +61,6 @@ export const newErrors = (gqlQuery: string, resolvers: Resolvers, currentQuery: 
     if (currentQueryNum > 1) {
       // Create array of split on every instance of the query name
       const splitArray: string[] = gqlQuery.split(queryName)
-      console.log(splitArray);
       // Defines when the current query starts in the gqlQuery string by adding the length of the previous array element to the 
       // index in the string where the previous array element begins. E.g., the first element of splitArray will start at 0,
       // then we add splitArray[0]'s length to 0, and that's the index in the string at which the first instance of the given
@@ -72,12 +71,9 @@ export const newErrors = (gqlQuery: string, resolvers: Resolvers, currentQuery: 
       // Need to ensure that queryEnd comes after queryStart by supplying the second arg to indexOf. Applies to 
       // situations where there's a duplicate element in splitArray
       const queryEnd: number = gqlQuery.indexOf(splitArray[queryCache[queryName]], queryStart) + splitArray[queryCache[queryName]].length;
-      console.log(queryStart, queryEnd)
       // Re-assign gqlQuery string the value of the previous gqlQuery sliced, starting and ending at the variables shown below
       gqlQuery = gqlQuery.slice(queryStart, queryEnd);
     }
-
-    console.log(currentQueryNum, gqlQuery);
 
     // First check if the client's query included an argument
     if (gqlQuery.includes(queryNamePlusArg)) {
