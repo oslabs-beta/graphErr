@@ -66,7 +66,10 @@ export async function applyGraphQL<T>({
   });
 
   type Output = {
-    standardError?: string,
+    startsWith?: string,
+    coontains?: string,
+    endsWith?: string,
+    //standardError?: string,
     statusCode?: number,
     graphQLSpecification?: string,
     specificationURL?: string,
@@ -76,16 +79,65 @@ export async function applyGraphQL<T>({
 
   const errorHandler = (resBody: ErrorResponseBody) : Output[] => {
     const output: OutputArray = [];
-    for (let j = 0; j < resBody.errors.length; j++) {
-      for (let i = 0; i < graphErrLibrary.length; i++) {
-        if (resBody.errors[j].message.startsWith(graphErrLibrary[i].standardError)) {
-          // possibly change later to return here instead to make more performant
+
+    resBody.errors.forEach((error: any) => {
+      console.log(error.message);
+      for (let i = 0; i < graphErrLibrary.length; i ++) {
+        const start : string | undefined = graphErrLibrary[i].startsWith;
+        const contain : string | undefined = graphErrLibrary[i].contains;
+        const end : string | undefined = graphErrLibrary[i].endsWith;
+        const matchingString : string = error.message;
+
+        if (start && contain && end) {
+          if (matchingString.startsWith(start) && matchingString.includes(contain) && matchingString.endsWith(end)) {
+            output.push(graphErrLibrary[i]);
+          }
+        } else if (start && contain) {
+          if (matchingString.startsWith(start) && matchingString.includes(contain)) {
+            output.push(graphErrLibrary[i]);
+          }
+        } else if (contain && end) {
+          if (matchingString.includes(contain) && matchingString.endsWith(end)) {
+            output.push(graphErrLibrary[i]);
+          }
+        } else if (start && end) {
+            if (matchingString.startsWith(start) && matchingString.endsWith(end)) {
+              output.push(graphErrLibrary[i]);
+            }
+        } else if (start) {
+         if (matchingString.startsWith(start)) {
           output.push(graphErrLibrary[i]);
+         }
+        } else if (contain) {
+          if (matchingString.includes(contain)) {
+            output.push(graphErrLibrary[i]);
+          }
+        } else if (end) {
+          if (matchingString.endsWith(end)) {
+            output.push(graphErrLibrary[i]);
+          }
         }
       }
-    }
+      if (!output[0]) output.push({graphQLSpecification: 'Error not found in specification', specificationURL: "https://spec.graphql.org/"});
+    });
     return output;
   }
+
+  // const errorHandler = (resBody: ErrorResponseBody) : Output[] => {
+  //   const output: OutputArray = [];
+  //   for (let j = 0; j < resBody.errors.length; j++) {
+  //     for (let i = 0; i < graphErrLibrary.length; i++) {
+  //       if (resBody.errors[j].message.startsWith(graphErrLibrary[i].standardError)) {
+  //         // possibly change later to return here instead to make more performant
+  //         output.push(graphErrLibrary[i]);
+  //       }
+  //     }
+  //   }
+  //   return output;
+  // }
+
+
+
 
   await router.post(path, fileUploadMiddleware, async (ctx: any) => {
     const { response, request } = ctx;
