@@ -41,16 +41,16 @@ export const typeDefs = gql`
 `;
 
 export type MediaType = {
-  mediaType: string;
+  mediaType: string,
 };
 
 export type UserId = {
-  userId: number;
+  userId: number,
 };
 
 export type AddUserMutation = {
-  username: string;
-  password: string;
+  username: string,
+  password: string,
 };
 
 // export type pullMediaByType = {
@@ -59,61 +59,61 @@ export type AddUserMutation = {
 
 // use for resultArr in mediaControllers.ts
 export type MediaOutput = {
-  _id: number;
-  type: string;
-  title: string;
+  _id: number,
+  type: string,
+  title: string,
 }[];
 
 // used in newErrors function parameter in newErrors.ts
 export type Resolvers = {
-  [key: string]: string;
+  [key: string]: string,
 };
 
 // used in applyGQL.ts
 export type ExtensionsObject = {
-  [key: string]: {graphErr: string}[];
+  [key: string]: {graphErr: string}[],
 };
 
 // used in authorController.ts
 export type AuthorResultArray = {
-  title: string;
+  title: string,
 }[];
 
 // used in mediaControllers.ts
 export type MediaResultArray = {
-  _id: number;
-  type: string;
-  title: string;
+  _id: number,
+  type: string,
+  title: string,
 }[];
 
 // used in mediaControllers.ts
 export type ReviewResultArray = {
-  _id: number;
-  user_id: number;
-  media_id: number;
-  review: string;
-  rating: number;
+  _id: number,
+  user_id: number,
+  media_id: number,
+  review: string,
+  rating: number,
 }[];
 
 // used in mediaControllers.ts
 export type UserResultArray = {
-  _id: number;
-  username: string;
-  password: string;
-  status: string;
+  _id: number,
+  username: string,
+  password: string,
+  status: string,
 }[];
 
 // used in applyGQL.ts
 export type ErrorResponseBody = {
   errors: {
-    graphQLError: string;
-    message: string;
-  }[];  
+    graphQLError: string,
+    message: string,
+  }[],
 };
 
 // used in newErrors.ts
 export type QueryCache = {
-  [key: string]: number;
+  [key: string]: number,
 }
 
 // used in newErrors.ts
@@ -122,7 +122,15 @@ export type NewErrorsOutputObj = {
   queryCache: QueryCache,
 }
 
-// used in authorController.ts
-// export type AuthorController = {
-//   [key: string]: function;
-// }
+// used in applyGQL.ts
+export type Output = {
+  startsWith?: string,
+  coontains?: string,
+  endsWith?: string,
+  statusCode?: number,
+  graphQLSpecification?: string,
+  specificationURL?: string,
+}
+
+// used in applyGQL.ts
+export type OutputArray = Output[]
