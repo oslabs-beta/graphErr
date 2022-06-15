@@ -91,8 +91,14 @@ The response would look like:
 ## Making a Query that would display GraphErr functionality
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="example query with graphErr response">
+  <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="example query with graphErr response for non native GraphQL err">
 </div>
+
+<div align="left">
+  <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="example query with graphErr response for handling native GraphQL err">
+</div>
+
+
 
 ### Suggestions
 
