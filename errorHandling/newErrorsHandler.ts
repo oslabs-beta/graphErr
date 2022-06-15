@@ -3,7 +3,7 @@
  
  // Function that handles looping through query responses
  // resBodyData has an "any" type because the response varies greatly
- export const newErrorsHandler = (resBodyData: any, gqlQuery: string, resolvers: Resolvers) : ExtensionsObject => {
+ export const newErrorsHandler = (resBodyData: any, gqlQuery: string, resolvers: Resolvers, schema: string) : ExtensionsObject => {
   // Object to store extensions
   const extensionsObj: ExtensionsObject = {};
   // Object to store cache of queries
@@ -13,7 +13,7 @@
     // check for null responses. A null response indicates that we need to modify the response message
     if (resBodyData[queryName].length === 0) {
       // Invoke newErrors and store the graphErr response message and queryCache on the newErrorsResult object
-      const newErrorsResult: NewErrorsOutputObj = newErrors(gqlQuery, resolvers, queryName, queryCacheObj);
+      const newErrorsResult: NewErrorsOutputObj = newErrors(gqlQuery, resolvers, queryName, queryCacheObj, schema);
       // Creates new property on extensionsObj, setting the graphErr response message as the evaluated result of invoking newErrors
       extensionsObj[queryName] = [{graphErr: newErrorsResult.graphErrResponse}];
       // Assings queryCacheObj the updated cacheObj value, which has been processed and returned by the newErrors function

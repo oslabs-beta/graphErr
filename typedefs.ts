@@ -134,3 +134,19 @@ export type Output = {
 
 // used in applyGQL.ts
 export type OutputArray = Output[]
+
+// used in applyGQL.ts
+export type ErrorExtension = {
+  graphQLSpecification: string,
+  specURL: string,
+};
+
+// used in applyGQL.ts
+export type ResBodyErrorsCopyObject = {
+  message: string,
+  locations: {
+    line: number,
+    column: number,
+  }[],
+  extensions?: ErrorExtension,
+}
