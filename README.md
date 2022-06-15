@@ -61,7 +61,8 @@ app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
 
 await app.listen({ port: 3000 });
 ```
-* In addition to importing the _GraphErr_ Deno 3rd Party Module, you must also import the _oak_ module and GraphQL-tag (gql).
+* Please import all necessary 3rd party modules (GraphErr, oak, and gql).
+  * [Oak](https://github.com/oakserver/oak) is a middleware framework for handling HTTP requests.
   * [GraphQL-tag](https://github.com/apollographql/graphql-tag) (gql) is a Javascript template literal tag that parses GraphQL query strings into the standard GraphQL AST.
 * Define typedefs (using GraphQL-tag) and resolvers and pass both into applyGraphQL as shown in the code above.
 
