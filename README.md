@@ -144,6 +144,6 @@ Notice any issues or bugs? Please open an issue. All feedback is greatly appreci
 
 ## Documentation
 
-[graphErr.land](https://www.grapherr.land/)
+Website: [graphErr.land](https://www.grapherr.land/)
 
-[Our medium article](google.com)
+Medium: [Introducing graphErr: solving GraphQL’s questionable query response quirks](https://medium.com/@clay.sa/introducing-grapherr-solving-graphqls-questionable-query-response-quirks-20122ebbc4cb)
