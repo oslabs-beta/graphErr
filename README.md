@@ -94,7 +94,7 @@ The response would look like:
 
 ## Functionality
 
-Example #1 - Null message response
+Example #1 - Null response
 
 Without graphErr:
 
