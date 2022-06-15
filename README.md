@@ -73,7 +73,7 @@ await app.listen({ port: 3000 });
     * generated type tags by the gql
   * resolvers: any
     * An object that handles the queries and mutations
-* The ApplyGQL utilizes code from the Oak-GraphQL module. For additional information on ApplyGQL, please check out the [OakGQL repository](https://github.com/aaronwlee/oak-graphql).
+* ApplyGQL utilizes code from the Oak-GraphQL module. For additional information on ApplyGQL, please check out the [OakGQL repository](https://github.com/aaronwlee/oak-graphql).
 
 ## Making a Query
 
