@@ -94,30 +94,33 @@ The response would look like:
 
 ## Functionality
 
-Example #1 - graphErr response when the user receives an error (null response) that GraphQL does not natively provide error messaging for:
+Example #1 - Null response
+
+Standard response:
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="example query with graphErr response for non native GraphQL err">
+  <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="Example query without graphErr response for non native GraphQL err">
 </div>
 
-Same query without graphErr: 
+GraphErr response:
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="example query with graphErr response for non native GraphQL err">
+  <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="Example query with graphErr response for non native GraphQL err">
 </div>
-
 <br />
 
-Example #2 - graphErr response for a native GraphQL error:
+Example #2 - Native GraphQL error
+
+Standard response:
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="example query with graphErr response for handling native GraphQL err">
+  <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="Example query without graphErr response for handling native GraphQL err">
 </div>
 
-Same query without graphErr: 
+GraphErr response:
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="example query with graphErr response for handling native GraphQL err">
+  <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="Example query with graphErr response for handling native GraphQL err">
 </div>
 
 ## Suggestions
