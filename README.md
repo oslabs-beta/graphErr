@@ -29,13 +29,11 @@ Here is an example of a server you can use to run GraphErr:
 ```
 import { Application, Router } from "https://deno.land/x/oak@v10.0.0/mod.ts";
 import { applyGraphQL } from "./applyGQL.ts"
-import { typeDefs } from "./typedefs.ts";
-import { resolvers } from "./resolvers/resolvers.ts";
 
 const app = new Application();
 
-// Define the GQL schema using the GraphQL-tag (gql). More information below in the README.
-export const typeDefs = gql`
+// Define the GQL schema using GraphQL-tag (gql). More information on GraphQL-tag below in the README.
+const typeDefs = gql`
   type Mutation {
     addUser(username: String, password: String): [User!]
   }
@@ -52,6 +50,21 @@ export const typeDefs = gql`
     status: String
   }
 `;
+
+// Define resolvers. Please note that this example... RESUME HERE
+const resolvers = {
+  Query: {
+    allUsers: () => userController.pullAllUsers(),
+    userById: (_root: any, args: UserId, _context: any, _info: any) => {
+      return userController.pullUserById(args.userId);
+    },
+  },
+  Mutation: {
+    addUser: (_root: any, args: AddUserMutation, _context: any, _info: any) => {
+      return userController.addUser(args.username, args.password);
+    },
+  },
+};
 
 const GraphQLService = await applyGraphQL<Router>({
   Router,
