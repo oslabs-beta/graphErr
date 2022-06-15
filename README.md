@@ -102,7 +102,7 @@ Standard response:
   <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="Example query without graphErr response for non native GraphQL err">
 </div>
 
-Using graphErr:
+GraphErr response:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="Example query with graphErr response for non native GraphQL err">
@@ -117,7 +117,7 @@ Standard response:
   <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="Example query without graphErr response for handling native GraphQL err">
 </div>
 
-Using graphErr:
+GraphErr response:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="Example query with graphErr response for handling native GraphQL err">
