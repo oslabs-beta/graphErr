@@ -65,6 +65,14 @@ await app.listen({ port: 3000 });
   * [Oak](https://github.com/oakserver/oak) is a middleware framework for handling HTTP requests.
   * [GraphQL-tag](https://github.com/apollographql/graphql-tag) (gql) is a Javascript template literal tag that parses GraphQL query strings into the standard GraphQL AST.
 * Define typedefs (using GraphQL-tag) and resolvers and pass both into applyGraphQL as shown in the code above.
+* ApplyGQL accepts four arguments:
+  * Router: oak Router module
+  * path?: string
+    A target path that handles the GraphQL post request (*optional: default as /graphql)
+  * typeDefs: any
+    generated type tags by the gql
+  * resolvers: any
+    An object that handles the queries and mutations
 
 ## Making a Query
 
