@@ -96,13 +96,13 @@ The response would look like:
 
 Example #1 - Null message response
 
-**Before** - standard GraphQL response that does not identify or describe the issue:
+Without graphErr:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="Example query without graphErr response for non native GraphQL err">
 </div>
 
-**After** - graphErr response:
+With graphErr:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="Example query with graphErr response for non native GraphQL err">
@@ -111,13 +111,13 @@ Example #1 - Null message response
 
 Example #2 - Native GraphQL error
 
-**Before** - standard GraphQL response:
+Without graphErr:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="Example query without graphErr response for handling native GraphQL err">
 </div>
 
-**After** - graphErr response:
+With graphErr:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="Example query with graphErr response for handling native GraphQL err">
