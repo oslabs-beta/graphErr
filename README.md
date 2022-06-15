@@ -60,7 +60,7 @@ app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
 
 await app.listen({ port: 3000 });
 ```
-* Please import all necessary 3rd party modules (GraphErr, oak, and gql).
+* Please import all necessary 3rd party modules (graphErr, oak, and gql).
   * [Oak](https://github.com/oakserver/oak) is a middleware framework for handling HTTP requests.
   * [GraphQL-tag](https://github.com/apollographql/graphql-tag) (gql) is a Javascript template literal tag that parses GraphQL query strings into the standard GraphQL AST.
 * Define typedefs (using GraphQL-tag) and resolvers and pass both into applyGraphQL as shown in the code above.
@@ -92,15 +92,17 @@ The response would look like:
   <img style="width: 100%" src="assets/example_query_response.png" alt="example query for getting all users with username">
 </div>
 
-## GraphErr Functionality
+## 
 
-Example of GraphErr response when the user receives an error (null response) that GraphQL does not natively provide error messaging for:
+Functionality
+
+Example of graphErr response when the user receives an error (null response) that GraphQL does not natively provide error messaging for:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="example query with graphErr response for non native GraphQL err">
 </div>
 
-Without graphErr: 
+Same query without graphErr: 
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="example query with graphErr response for non native GraphQL err">
@@ -108,13 +110,13 @@ Without graphErr:
 
 <br />
 
-Example of GraphErr response for a native GraphQL error:
+Example of graphErr response for a native GraphQL error:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="example query with graphErr response for handling native GraphQL err">
 </div>
 
-Without graphErr: 
+Same query without graphErr: 
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="example query with graphErr response for handling native GraphQL err">
