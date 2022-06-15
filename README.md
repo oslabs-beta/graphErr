@@ -8,17 +8,16 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 
 ## Features
 
-* Provides additional context to GraphQL's native error messaging.
-  * GraphErr's error response describes the cause and source of the issue for faster debugging.
-  * Includes a link to refer to the GraphQL specification for more information about the error.
+* Provides additional context to GraphQL's native error messaging for faster debugging.
+  * Classifies the error type and includes a link to the GraphQL spec for more information about the error.
 * Gives descriptive error messagages to null responses, identifying the cause of the issue.
-  * Traditionally, null responses lack error messaging.
+  * Traditionally, GraphQL null responses lack error messaging.
 * Enables quick development of GraphQL-equipped router.
 * Generates GraphQL Playground IDE, allowing developers to write and execute queries.
 
 ## Getting Started with GraphErr
 
-Below is an example of a basic server you can use to run GraphErr:
+Below is an example of a basic server you can use to run GraphErr. This server will run on http://localhost:3000/graphql by default.
 
 ```
 import { Application, Router } from "https://deno.land/x/oak@v10.0.0/mod.ts";
@@ -107,6 +106,22 @@ Example of GraphErr response for a native GraphQL error:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="example query with graphErr response for handling native GraphQL err">
+</div>
+
+### Without GraphErr Functionality
+
+Example of when the user receives an error (null response) without graphErr:
+
+<div align="left">
+  <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="example query with graphErr response for non native GraphQL err">
+</div>
+
+<br />
+
+Example of native GraphQL error without graphErr:
+
+<div align="left">
+  <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="example query with graphErr response for handling native GraphQL err">
 </div>
 
 
