@@ -50,7 +50,7 @@ const resolvers = {
   Query: {
     allUsers: () => {
       return [
-      {_id: 1, username: 'JohnDoe', password: 'Password123!' },
+      { _id: 1, username: 'JohnDoe', password: 'Password123!' },
       { _id: 2, username: 'JaneDoe', password: 'Password1234!!' } 
       ]
     },
