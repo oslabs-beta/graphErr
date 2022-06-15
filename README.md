@@ -1,6 +1,7 @@
 <div align="center">
-  <img style="width: 70%" src="assets/graphErr_logo.svg" alt="graphErr logo">
+  <img style="width: 70%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_logo.svg">
 </div>
+
 
 ## GraphErr
 
@@ -89,38 +90,38 @@ query {
 The response would look like:
 
 <div align="left">
-  <img style="width: 100%" src="assets/example_query_response.png" alt="example query for getting all users with username">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/example_query_response.png" alt="example query for getting all users with username">
 </div>
 
 ## Functionality
 
-Example #1 - Null response
+**Example #1** - Null response
 
-Standard response:
+**Standard response:**
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="Example query without graphErr response for non native GraphQL err">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_msg_example2-1.png" alt="Example query without graphErr response for non native GraphQL err">
 </div>
 
-GraphErr response:
+**GraphErr response:**
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="Example query with graphErr response for non native GraphQL err">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_msg_example2.png" alt="Example query with graphErr response for non native GraphQL err">
 </div>
 <br />
 
-Example #2 - Native GraphQL error
+**Example #2** - Native GraphQL error
 
-Standard response:
+**Standard response:**
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="Example query without graphErr response for handling native GraphQL err">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_msg_example-1.png" alt="Example query without graphErr response for handling native GraphQL err">
 </div>
 
-GraphErr response:
+**GraphErr response:**
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="Example query with graphErr response for handling native GraphQL err">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_msg_example.png" alt="Example query with graphErr response for handling native GraphQL err">
 </div>
 
 ## Suggestions
