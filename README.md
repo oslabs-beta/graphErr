@@ -88,19 +88,24 @@ The response would look like:
   <img style="width: 100%" src="assets/example_query_response.png" alt="example query for getting all users with username">
 </div>
 
-## Making a Query that would display GraphErr functionality
+## GraphErr functionality
+
+Example of GraphErr error response when user receives error that GraphQL does not catch:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="example query with graphErr response for non native GraphQL err">
 </div>
+
+<br />
+
+Another example of GraphErr error response when user receives a native GraphQL error:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="example query with graphErr response for handling native GraphQL err">
 </div>
 
 
-
-### Suggestions
+## Suggestions
 
 We would love to hear from you!
 
