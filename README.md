@@ -92,9 +92,7 @@ The response would look like:
   <img style="width: 100%" src="assets/example_query_response.png" alt="example query for getting all users with username">
 </div>
 
-## 
-
-Functionality
+## Functionality
 
 Example of graphErr response when the user receives an error (null response) that GraphQL does not natively provide error messaging for:
 
