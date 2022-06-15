@@ -8,10 +8,10 @@ Descriptive error handling for GraphQL in Deno for Oak servers.
 
 ## Features
 
-- Provides more clarification on GraphQL's error messaging by adding graphErr's descriptive error handling alongside with it.
-  - GraphErr's error response describes where and what the issue is for faster debugging.
-  - Included a link to refer to the GraphQL specification for more information about the user's errors.
-- Makes GraphQL Playground IDE available for constructing and sending queries during development.
+* Provides more clarification on GraphQL's error messaging by adding GraphErr's descriptive error handling alongside with it.
+  * GraphErr's error response describes where and what the issue is for faster debugging.
+  * Included a link to refer to the GraphQL specification for more information about the user's errors.
+* Makes GraphQL Playground IDE available for constructing and sending queries during development.
 
 ## Installation
 
