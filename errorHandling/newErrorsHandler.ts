@@ -10,8 +10,8 @@
   let queryCacheObj: QueryCache = {};
   // loop through all response arrays 
     for (const queryName in resBodyData) {
-    // check for null responses. A null response indicates that we need to modify the response message
-    if (resBodyData[queryName].length === 0) {
+    // check for null responses or empty array. A null response or empty array indicates that we need to modify the response message
+    if (resBodyData[queryName] === null || resBodyData[queryName].length === 0) {
       // Invoke newErrors and store the graphErr response message and queryCache on the newErrorsResult object
       const newErrorsResult: NewErrorsOutputObj = newErrors(gqlQuery, resolvers, queryName, queryCacheObj, schema);
       // Creates new property on extensionsObj, setting the graphErr response message as the evaluated result of invoking newErrors
