@@ -11,7 +11,7 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 * Provides additional context to GraphQL's native error messaging for faster debugging.
   * Classifies the error type and includes a link to the GraphQL spec for more information about the error.
 * Gives descriptive error messagages to null responses, identifying the cause of the issue.
-  * Traditionally, null responses lack error messaging.
+  * Traditionally, GraphQL null responses lack error messaging.
 * Enables quick development of GraphQL-equipped router.
 * Generates GraphQL Playground IDE, allowing developers to write and execute queries.
 
