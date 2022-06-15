@@ -84,3 +84,4 @@ export const newErrors = (gqlQuery: string, resolvers: Resolvers, currentQuery: 
 
   return outputObj;
 }
+
