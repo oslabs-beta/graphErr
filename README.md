@@ -1,8 +1,8 @@
 <div align="center">
-  <img style="width: 70%" src="assets/graphErrLogo.svg" alt="graphErr logo">
+  <img style="width: 70%" src="assets/graphErr_logo.svg" alt="graphErr logo">
 </div>
 
-# GraphErr
+## GraphErr
 
 Descriptive error handling for GraphQL in Deno for Oak servers.
 
@@ -55,17 +55,16 @@ query {
 ```
 
 The response would look like:
-<div align="left">
-  <img style="width: 100%" src="assets/Screen Shot 2022-06-14 at 11.30.58 AM.png" alt="example query for getting all users with username">
-</div>
 
+<div align="left">
+  <img style="width: 100%" src="assets/example_query_response.png" alt="example query for getting all users with username">
+</div>
 
 ## Making a Query that would display GraphErr functionality
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr msg example.png" alt="example query with graphErr response">
+  <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="example query with graphErr response">
 </div>
-
 
 ### Suggestions
 
