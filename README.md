@@ -88,7 +88,7 @@ The response would look like:
   <img style="width: 100%" src="assets/example_query_response.png" alt="example query for getting all users with username">
 </div>
 
-## GraphErr functionality
+## GraphErr Functionality
 
 Example of GraphErr error response when user receives error that GraphQL does not catch:
 
