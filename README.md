@@ -9,11 +9,11 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 ## Features
 
 * Provides additional context to GraphQL's native error messaging.
-  * GraphErr's error response describes where and what the issue is for faster debugging.
-  * Included a link to refer to the GraphQL specification for more information about the user's errors.
-* Gives descriptive error messagages to null responses, reducing ambiguity by identifying the cause of the issue.
+  * GraphErr's error response describes the cause and source of the issue for faster debugging.
+  * Includes a link to refer to the GraphQL specification for more information about the error.
+* Gives descriptive error messagages to null responses, identifying the cause of the issue.
   * Traditionally, null responses lack error messaging.
-* Enables development of GraphQL-equipped router.
+* Enables quick development of GraphQL-equipped router.
 * Generates GraphQL Playground IDE, allowing developers to write and execute queries.
 
 ## Installation
@@ -34,6 +34,25 @@ import { resolvers } from "./resolvers/resolvers.ts";
 
 const app = new Application();
 
+// Define the GQL schema using the GraphQL-tag (gql). More information below in the README.
+export const typeDefs = gql`
+  type Mutation {
+    addUser(username: String, password: String): [User!]
+  }
+
+  type Query {
+    allUsers: [User!]!
+    userById(userId: Int): [User!]
+  }
+
+  type User {
+    _id: ID!
+    username: String!
+    password: String!
+    status: String
+  }
+`;
+
 const GraphQLService = await applyGraphQL<Router>({
   Router,
   typeDefs: typeDefs,
@@ -45,6 +64,7 @@ app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
 await app.listen({ port: 3000 });
 ```
 * Please note that in addition to importing the _GraphErr_ Deno 3rd Party Module, you must import the _oak_ module.
+* Please note that 
 
 ## Making a Query
 
