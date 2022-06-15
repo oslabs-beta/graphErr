@@ -68,11 +68,11 @@ await app.listen({ port: 3000 });
 * ApplyGQL accepts four arguments:
   * Router: oak Router module
   * path?: string
-    A target path that handles the GraphQL post request (*optional: default as /graphql)
+    * A target path that handles the GraphQL post request (*optional: default as /graphql)
   * typeDefs: any
-    generated type tags by the gql
+    * generated type tags by the gql
   * resolvers: any
-    An object that handles the queries and mutations
+    * An object that handles the queries and mutations
 
 ## Making a Query
 
