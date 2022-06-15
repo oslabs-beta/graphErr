@@ -100,6 +100,12 @@ Example of GraphErr response when the user receives an error (null response) tha
   <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="example query with graphErr response for non native GraphQL err">
 </div>
 
+Without graphErr: 
+
+<div align="left">
+  <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="example query with graphErr response for non native GraphQL err">
+</div>
+
 <br />
 
 Example of GraphErr response for a native GraphQL error:
@@ -108,22 +114,11 @@ Example of GraphErr response for a native GraphQL error:
   <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="example query with graphErr response for handling native GraphQL err">
 </div>
 
-### Without GraphErr Functionality
-
-Example of when the user receives an error (null response) without graphErr:
-
-<div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="example query with graphErr response for non native GraphQL err">
-</div>
-
-<br />
-
-Example of native GraphQL error without graphErr:
+Without graphErr: 
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="example query with graphErr response for handling native GraphQL err">
 </div>
-
 
 ## Suggestions
 
