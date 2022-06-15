@@ -96,7 +96,7 @@ The response would look like:
 
 Example #1 - Null response
 
-Standard:
+Standard response:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="Example query without graphErr response for non native GraphQL err">
@@ -111,7 +111,7 @@ Using graphErr:
 
 Example #2 - Native GraphQL error
 
-Standard:
+Standard response:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="Example query without graphErr response for handling native GraphQL err">
