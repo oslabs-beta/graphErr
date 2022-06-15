@@ -122,11 +122,9 @@ Same query without graphErr:
 
 ## Suggestions
 
-We would love to hear from you!
-
 GraphErr is currently in beta. If you would like to contribute please contact the authors.
 
-Notice any issues or bugs? Please open an issue!
+Notice any issues or bugs? Please open an issue. All feedback is greatly appreciated!
 
 ## Authors
 
