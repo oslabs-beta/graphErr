@@ -16,12 +16,6 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 * Enables quick development of GraphQL-equipped router.
 * Generates GraphQL Playground IDE, allowing developers to write and execute queries.
 
-## Installation
-
-GraphErr can be imported as a deno module:
-
-The steps will be listed here once our module is up and running on deno land.
-
 ## Setting up the Server
 
 Here is an example of a server you can use to run GraphErr:
