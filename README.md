@@ -90,7 +90,7 @@ The response would look like:
 
 ## GraphErr Functionality
 
-Example of GraphErr response when the user receives an error (null response) that GraphQL does not provide native error messaging for:
+Example of GraphErr response when the user receives an error (null response) that GraphQL does not natively provide error messaging for:
 
 <div align="left">
   <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="example query with graphErr response for non native GraphQL err">
