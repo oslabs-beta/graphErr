@@ -44,7 +44,7 @@ app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
 
 await app.listen({ port: 3000 });
 ```
-* Note that you must import the _oak_ Deno 3rd Part Module.
+* Please note that in addition to importing the _GraphErr_ Deno 3rd Party Module, you must import the _oak_ module.
 
 ## Making a Query
 
