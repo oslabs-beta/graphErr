@@ -17,7 +17,7 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 
 ## Getting Started with GraphErr
 
-Below is an example of a basic server you can use to run GraphErr:
+Below is an example of a basic server you can use to run GraphErr. This server will run on http://localhost:3000/graphql by default.
 
 ```
 import { Application, Router } from "https://deno.land/x/oak@v10.0.0/mod.ts";
