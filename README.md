@@ -11,7 +11,7 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 * Provides additional context to GraphQL's native error messaging.
   * GraphErr's error response describes where and what the issue is for faster debugging.
   * Included a link to refer to the GraphQL specification for more information about the user's errors.
-* Provides descriptive error messagages to null responses, identifying the cause of the issue.
+* Gives descriptive error messagages to null responses, reducing ambiguity by identifying the cause of the issue.
   * Traditionally, null responses lack error messaging.
 * Enables development of GraphQL-equipped router.
 * Generates GraphQL Playground IDE, allowing developers to write and execute queries.
@@ -44,6 +44,7 @@ app.use(GraphQLService.routes(), GraphQLService.allowedMethods());
 
 await app.listen({ port: 3000 });
 ```
+* Note that you must import the _oak_ Deno 3rd Part Module.
 
 ## Making a Query
 
