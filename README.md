@@ -131,6 +131,6 @@ Notice any issues or bugs? Please open an issue!
 
 ## Documentation
 
-[graphErr.land](google.com)
+[graphErr.land](https://www.grapherr.land/)
 
 [Our medium article](google.com)
