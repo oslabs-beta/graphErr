@@ -11,7 +11,7 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 
 * Provides additional context to GraphQL's native error messaging for faster debugging.
   * Classifies the error type and includes a link to the GraphQL spec for more information about the error.
-* Gives descriptive error messagages to null responses, identifying the cause of the issue.
+* Gives descriptive error messages to null responses, identifying the cause of the issue.
   * Traditionally, GraphQL null responses lack error messaging.
 * Enables quick development of GraphQL-equipped router.
 * Generates GraphQL Playground IDE, allowing developers to write and execute queries.
@@ -21,9 +21,9 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 Below is an example of a basic server you can use to run GraphErr. This server will run on http://localhost:3000/graphql by default.
 
 ```
-import { applyGraphQL } from "https://deno.land/x/grapherr@v1.0.2/applyGQL.ts";
-import { Application, Router } from "https://deno.land/x/oak@v10.0.0/mod.ts";
-import { gql } from 'https://deno.land/x/graphql_tag@0.0.1/mod.ts';
+import { applyGraphQL } from "https://deno.land/x/grapherr/applyGQL.ts";
+import { Application, Router } from "https://deno.land/x/oak/mod.ts";
+import { gql } from 'https://deno.land/x/graphql_tag/mod.ts';
 
 const app = new Application();
 
