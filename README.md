@@ -1,6 +1,7 @@
 <div align="center">
-  <img style="width: 70%" src="assets/graphErr_logo.svg" alt="graphErr logo">
+  <img style="width: 70%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_logo.svg">
 </div>
+
 
 ## GraphErr
 
@@ -10,7 +11,7 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 
 * Provides additional context to GraphQL's native error messaging for faster debugging.
   * Classifies the error type and includes a link to the GraphQL spec for more information about the error.
-* Gives descriptive error messagages to null responses, identifying the cause of the issue.
+* Gives descriptive error messages to null responses, identifying the cause of the issue.
   * Traditionally, GraphQL null responses lack error messaging.
 * Enables quick development of GraphQL-equipped router.
 * Generates GraphQL Playground IDE, allowing developers to write and execute queries.
@@ -20,9 +21,9 @@ Descriptive GraphQL error handling for Deno/Oak servers.
 Below is an example of a basic server you can use to run GraphErr. This server will run on http://localhost:3000/graphql by default.
 
 ```
-import { applyGraphQL } from "https://deno.land/x/grapherr@v1.0.2/applyGQL.ts";
-import { Application, Router } from "https://deno.land/x/oak@v10.0.0/mod.ts";
-import { gql } from 'https://deno.land/x/graphql_tag@0.0.1/mod.ts';
+import { applyGraphQL } from "https://deno.land/x/grapherr/applyGQL.ts";
+import { Application, Router } from "https://deno.land/x/oak/mod.ts";
+import { gql } from 'https://deno.land/x/graphql_tag/mod.ts';
 
 const app = new Application();
 
@@ -89,38 +90,38 @@ query {
 The response would look like:
 
 <div align="left">
-  <img style="width: 100%" src="assets/example_query_response.png" alt="example query for getting all users with username">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/example_query_response.png" alt="example query for getting all users with username">
 </div>
 
 ## Functionality
 
-Example #1 - Null response
+**Example #1** - Null response
 
-Standard response:
+**Standard response:**
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example2-1.png" alt="Example query without graphErr response for non native GraphQL err">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_msg_example2-1.png" alt="Example query without graphErr response for non native GraphQL err">
 </div>
 
-GraphErr response:
+**GraphErr response:**
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example2.png" alt="Example query with graphErr response for non native GraphQL err">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_msg_example2.png" alt="Example query with graphErr response for non native GraphQL err">
 </div>
 <br />
 
-Example #2 - Native GraphQL error
+**Example #2** - Native GraphQL error
 
-Standard response:
+**Standard response:**
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example-1.png" alt="Example query without graphErr response for handling native GraphQL err">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_msg_example-1.png" alt="Example query without graphErr response for handling native GraphQL err">
 </div>
 
-GraphErr response:
+**GraphErr response:**
 
 <div align="left">
-  <img style="width: 100%" src="assets/graphErr_msg_example.png" alt="Example query with graphErr response for handling native GraphQL err">
+  <img style="width: 100%" src="https://raw.githubusercontent.com/oslabs-beta/graphErr/main/assets/graphErr_msg_example.png" alt="Example query with graphErr response for handling native GraphQL err">
 </div>
 
 ## Suggestions
@@ -143,6 +144,6 @@ Notice any issues or bugs? Please open an issue. All feedback is greatly appreci
 
 ## Documentation
 
-[graphErr.land](https://www.grapherr.land/)
+Website: [graphErr.land](https://www.grapherr.land/)
 
-[Our medium article](google.com)
+Medium: [Introducing graphErr: solving GraphQL’s questionable query response quirks](https://medium.com/@clay.sa/introducing-grapherr-solving-graphqls-questionable-query-response-quirks-20122ebbc4cb)
